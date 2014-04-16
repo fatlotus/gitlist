@@ -48,7 +48,7 @@ class Client extends BaseClient
     private function recurseDirectory($path, $topLevel = true)
     {
         $dir = new \DirectoryIterator($path);
-        $user = $_SERVER["HTTP_REMOTE_USER"];
+        $user = $_SERVER["PHP_AUTH_USER"];
 
         if (get_current_user() == "vagrant")
           $user = "jarcher";
