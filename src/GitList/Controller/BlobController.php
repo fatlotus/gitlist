@@ -34,6 +34,8 @@ class BlobController implements ControllerProviderInterface
             return $app['twig']->render('file.twig', array(
                 'file'           => $file,
                 'fileType'       => $fileType,
+                'sha1'           =>
+                    $repository->getCommit("$branch")->getHash(),
                 'blob'           => $blob->output(),
                 'repo'           => $repo,
                 'branch'         => $branch,

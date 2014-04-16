@@ -36,11 +36,6 @@ class Client extends BaseClient
 
         foreach ($paths as $path) {
             $repositories = $this->recurseDirectory($path);
-
-            if (empty($repositories)) {
-                throw new \RuntimeException('There are no GIT repositories in ' . $path);
-            }
-
             $allRepositories = array_merge($allRepositories, $repositories);
         }
 
@@ -53,6 +48,10 @@ class Client extends BaseClient
     private function recurseDirectory($path, $topLevel = true)
     {
         $dir = new \DirectoryIterator($path);
+        $user = $_SERVER["HTTP_REMOTE_USER"];
+
+        if (get_current_user() == "vagrant")
+          $user = "jarcher";
 
         $repositories = array();
 
@@ -74,6 +73,9 @@ class Client extends BaseClient
                 $isRepository = file_exists($file->getPathname() . '/.git/HEAD');
 
                 if ($isRepository || $isBare) {
+                    if (basename($file->getPathname(), ".git") != $user)
+                        continue;
+
                     if (in_array($file->getPathname(), $this->getHidden())) {
                         continue;
                     }

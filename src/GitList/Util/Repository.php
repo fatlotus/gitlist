@@ -91,6 +91,7 @@ class Repository
         'jpeg'     => 'image',
         'bmp'      => 'image',
         'csproj'   => 'xml',
+        'ipynb'    => 'notebook',
     );
 
     protected static $binaryTypes = array(

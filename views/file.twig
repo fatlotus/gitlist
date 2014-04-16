@@ -11,17 +11,21 @@
         <div class="source-header">
             <div class="meta"></div>
 
-            <div class="btn-group pull-right">
+            <form action="/submit?repo={{ repo }}&commit={{ sha1 }}&file={{ file }}" method="post" class="btn-group pull-right">
+                <button class="btn btn-small"><i class="icon-play"></i> Execute</button>
                 <a href="{{ path('blob_raw', {repo: repo, commitishPath: branch ~ '/' ~ file}) }}" class="btn btn-small"><i class="icon-file"></i> Raw</a>
                 <a href="{{ path('blame', {repo: repo, commitishPath: branch ~ '/' ~ file}) }}" class="btn btn-small"><i class="icon-bullhorn"></i> Blame</a>
                 <a href="{{ path('commits', {repo: repo, commitishPath: branch ~ '/' ~ file}) }}" class="btn btn-small"><i class="icon-list-alt"></i> History</a>
-            </div>
+            </form>
         </div>
         {% if fileType == 'image' %}
         <center><img src="{{ path('blob_raw', {repo: repo, commitishPath: branch ~ '/' ~ file}) }}" alt="{{ file }}" class="image-blob" /></center>
 
         {% elseif fileType == 'markdown' %}
         <div class="md-view"><div id="md-content">{{ blob }}</div></div>
+
+        {% elseif fileType == 'notebook' %}
+        <iframe class="notebook" src="/render?{{ repo }}&branch={{ branch }}&file={{ file }}"></iframe>
 
         {% else %}
         <pre id="sourcecode" language="{{ fileType }}">{{ blob|htmlentities|raw }}</pre>
