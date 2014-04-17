@@ -11,7 +11,7 @@
         <div class="source-header">
             <div class="meta"></div>
 
-            <form action="/submit?repo={{ repo }}&commit={{ sha1 }}&file={{ file }}" method="post" class="btn-group pull-right">
+            <form action="/submit?repo={{ repo }}&sha1={{ sha1 }}&file={{ file }}" method="post" class="btn-group pull-right">
                 <button class="btn btn-small"><i class="icon-play"></i> Execute</button>
                 <a href="{{ path('blob_raw', {repo: repo, commitishPath: branch ~ '/' ~ file}) }}" class="btn btn-small"><i class="icon-file"></i> Raw</a>
                 <a href="{{ path('blame', {repo: repo, commitishPath: branch ~ '/' ~ file}) }}" class="btn btn-small"><i class="icon-bullhorn"></i> Blame</a>
