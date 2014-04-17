@@ -12,7 +12,9 @@
             <div class="meta"></div>
 
             <form action="/submit?repo={{ repo }}&sha1={{ sha1 }}&file_name={{ file }}" method="post" class="btn-group pull-right">
+                {% if (fileType == 'notebook' or fileType == 'python') %}
                 <button class="btn btn-small"><i class="icon-play"></i> Execute</button>
+                {% endif %}
                 <a href="{{ path('blob_raw', {repo: repo, commitishPath: branch ~ '/' ~ file}) }}" class="btn btn-small"><i class="icon-file"></i> Raw</a>
                 <a href="{{ path('blame', {repo: repo, commitishPath: branch ~ '/' ~ file}) }}" class="btn btn-small"><i class="icon-bullhorn"></i> Blame</a>
                 <a href="{{ path('commits', {repo: repo, commitishPath: branch ~ '/' ~ file}) }}" class="btn btn-small"><i class="icon-list-alt"></i> History</a>
