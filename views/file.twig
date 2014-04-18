@@ -27,7 +27,7 @@
         <div class="md-view"><div id="md-content">{{ blob }}</div></div>
 
         {% elseif fileType == 'notebook' %}
-        <iframe class="notebook" src="/render?{{ repo }}&branch={{ branch }}&file={{ file }}"></iframe>
+        <iframe class="notebook" src="/render?repo={{ repo }}&sha1={{ sha1 }}&file_name={{ file }}"></iframe>
 
         {% else %}
         <pre id="sourcecode" language="{{ fileType }}">{{ blob|htmlentities|raw }}</pre>

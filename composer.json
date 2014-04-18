@@ -1,6 +1,7 @@
 {
-    "name": "klaussilveira/gitlist",
+    "name": "fatlotus/gitlist",
     "require": {
+        "packaged/thrift": "dev-master",
         "silex/silex": "1.*",
         "twig/twig": "1.*",
         "symfony/twig-bridge": "2.3.*",
