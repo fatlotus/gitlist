@@ -49,7 +49,9 @@ class Client extends BaseClient
     {
         $dir = new \DirectoryIterator($path);
         $user = $_SERVER["PHP_AUTH_USER"];
-
+        $is_admin = ($user == "jarcher" || $user == "qinqing" ||
+                     $user == "nseltzer" || $user == "lafferty");
+        
         if (get_current_user() == "vagrant")
           $user = "jarcher";
 
@@ -73,7 +75,8 @@ class Client extends BaseClient
                 $isRepository = file_exists($file->getPathname() . '/.git/HEAD');
 
                 if ($isRepository || $isBare) {
-                    if (basename($file->getPathname(), ".git") != $user)
+                    if (basename($file->getPathname(), ".git") != $user &&
+                          !$is_admin)
                         continue;
 
                     if (in_array($file->getPathname(), $this->getHidden())) {
